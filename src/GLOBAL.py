@@ -9,3 +9,7 @@ headers = {
     "Referer": "https://xueqiu.com/hq",
     "Host": "xueqiu.com"
 }
+
+proxies = {
+
+}

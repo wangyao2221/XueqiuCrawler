@@ -21,13 +21,13 @@ def get_stock_list(marked, type):
     count = get_stock_count(marked, type)
     url = GLOBAL.stock_list_url.format(count, marked, type)
 
-    response = requests.get(url, headers=GLOBAL.headers)
+    response = requests.get(url, headers=GLOBAL.headers,proxies=GLOBAL.proxies)
     data = json.loads(response.content)
     return data["data"]["list"]
 
 def get_stock_count(marked, type):
     url = GLOBAL.stock_list_url.format(0, marked, type)
-    response = requests.get(url, headers=GLOBAL.headers)
+    response = requests.get(url, headers=GLOBAL.headers,proxies=GLOBAL.proxies)
     data = json.loads(response.content)
     count = data["data"]["count"]
     return count
@@ -48,4 +48,4 @@ def save_stock_list(stock_list):
 
 if __name__ == "__main__":
     stock_list = get_all_stock_list()
-    save_stock_list(stock_list)
+    # save_stock_list(stock_list)

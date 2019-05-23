@@ -23,14 +23,14 @@ def get_and_save_comment_list(stock_list):
 def get_comment_list(symbol):
     count = get_comment_count(symbol)
     url = GLOBAL.comment_list_url.format(count,symbol)
-    response = sess.get(url, headers=GLOBAL.headers)
+    response = sess.get(url, headers=GLOBAL.headers,proxies=GLOBAL.proxies)
 
     data = json.loads(response.content)
     return data["list"]
 
 def get_comment_count(symbol):
     url = GLOBAL.comment_list_url.format(1, symbol)
-    response = sess.get(url, headers=GLOBAL.headers)
+    response = sess.get(url, headers=GLOBAL.headers,proxies=GLOBAL.proxies)
     data = json.loads(response.content)
     count = data["count"]
     return count
@@ -52,7 +52,7 @@ def save_comment_list(symbol,comment_list):
     return True
 
 if __name__ == "__main__":
-    sess.get("https://xueqiu.com/hq",headers=GLOBAL.headers)
+    sess.get("https://xueqiu.com/hq",headers=GLOBAL.headers,proxies=GLOBAL.proxies)
     sess.cookies.save()
 
     stock_list = get_stock_list_from_db()
